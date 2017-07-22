@@ -4,10 +4,11 @@ import re
 
 class WeightCalculator(object):
     '''
-    Distance based calculator.
+    Time and Space calculator.
+
+    Takes into account the geographic distance between the two records, and the time distance as well.
 
     Gives precedence to occupation: people that have the same occupation and interests are most likely to appear first.
-    Then takes into account the geographic distance between the two records, and the time distance as well.
 
     Uses an offline country geocoding dataset that's used as a fallback, in case a given record does not have
     lat\long values specified.
