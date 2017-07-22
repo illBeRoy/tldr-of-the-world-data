@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+#
+# The Trimmer Utility
+#
+# Used for trimming an already existing graph.
+#
+
 import argparse
 import progressbar
 
