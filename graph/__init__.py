@@ -1,4 +1,5 @@
 import cPickle as pickle
+import collections
 
 
 class Graph(object):
@@ -71,6 +72,30 @@ class Graph(object):
             self._edges.add(neighbour)
 
         self._vertices[edge] = neighbours
+
+    def get_joint_neighbours(self, edges, limit=None):
+        '''
+        Rate all neighbours of all given edges by their affinity to the group as a whole.
+
+        :param edges: edges to which query the neighbours
+        :param limit: if set, will limit the size of the output. optional
+        :return: neighbours that are affiliated with most neighbours
+        '''
+
+        # get all neighbours of all edges
+        all_neighbours = sum([self.get_neighbours(edge).keys() for edge in edges], [])
+
+        # count neighbours occurrences
+        neighbours_counter = collections.Counter(all_neighbours)
+
+        # order them by amount of occurrences in descending order
+        ordered_neighbours = [neighbour_name for neighbour_name, count in reversed(sorted(neighbours_counter.items()))]
+
+        # return the list, or part of it if there's a limit
+        if limit is not None:
+            return ordered_neighbours[:limit]
+        else:
+            return ordered_neighbours
 
     def save(self, filename):
         '''

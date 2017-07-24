@@ -13,7 +13,11 @@
 # 2. ~<String> - searches for people whose names contain the given string.
 #    example: ~sharon
 #
-# 3. exit - closes the explorer app
+# 3. [<Person Name>, ...<Person Name>] - searches for joint neighbours of specified people. case insensitive.
+#                                        must be spelled exactly as it is in the graph.
+#    example: [Ariel Sharon, Ehud Barak]
+#
+# 4. exit - closes the explorer app
 #
 
 import argparse
@@ -43,6 +47,19 @@ if __name__ == '__main__':
             results = filter(lambda x: query[1:] in x.lower(), graph.edges)
             print ', '.join(results)
 
+        # return all relevant edges which contain the query's string
+        elif query[0] == '[' and query[-1] == ']':
+            names = [word.strip().title() for word in query[1:-1].split(',')]
+
+            try:
+                result = graph.get_joint_neighbours(names, limit=20)
+            except Exception as err:
+                print 'Query failed: probably one of the queries did not yield results'
+                continue
+
+            for res in result:
+                print res
+
         # find closest neighbours for the given name
         else:
 
@@ -55,7 +72,7 @@ if __name__ == '__main__':
                 limit = 10
 
             # normalize and capitalize query
-            query = ' '.join(['{0}{1}'.format(q[0].upper(), q[1:].lower()) for q in query.split(' ')])
+            query = query.title()
 
             # find neighbours if query exists in graph
             try:
