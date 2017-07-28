@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Descender Results</title>
+</head>
+<body>
+
+    {% for group in groups %}
+        <div style="width: 100%; height: auto; border: 1px solid black">
+            {{ group.name }} <br />
+            Members: <br />
+            <ul>
+                {% for member in group.members %}
+                    <li> {{ member }} </li>
+                {% endfor %}
+            </ul>
+            <br />
+            Neighbours: <br />
+            <ul>
+                {% for neighbour in group.neighbours %}
+                    <li> {{ neighbour }} </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+
+</body>
+</html>
