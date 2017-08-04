@@ -61,7 +61,7 @@ class WeightCalculator(object):
             f.readline()
 
             for line in f.readlines():
-                country_code, lat, lon, country_name = line.split(' ', 3)
+                country_code, lat, lon, country_name = line.decode().split(' ', 3)
                 lat = float(lat)
                 lon = float(lon)
 

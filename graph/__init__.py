@@ -1,7 +1,7 @@
 # NOTE: I mistakenly switched between "edges" and "vertices". therefore, everything that's called an "edge" is
 #       actually a vertex, and vice versa.
 
-import cPickle as pickle
+import pickle
 import math
 
 
@@ -71,7 +71,7 @@ class Graph(object):
         '''
         self._edges.add(edge)
 
-        for neighbour in neighbours.iterkeys():
+        for neighbour in neighbours.keys():
             self._edges.add(neighbour)
 
         self._vertices[edge] = neighbours
@@ -81,7 +81,7 @@ class Graph(object):
         :return: neighbours as sorted list of tuples (name, score)
         '''
         neighbours = self.get_neighbours(edge)
-        return sorted(neighbours.iteritems(), key=lambda x: x[1])
+        return sorted(neighbours.items(), key=lambda x: x[1])
 
     def save(self, filename):
         '''

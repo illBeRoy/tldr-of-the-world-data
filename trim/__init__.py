@@ -21,7 +21,7 @@ class GraphTrimmer(object):
         output_graph = graph.Graph()
 
         # iterate over all vertices in the given graph
-        for edge, vertices in input_graph.vertices.iteritems():
+        for edge, vertices in input_graph.vertices.items():
             iterations += 1
 
             # notify callback if needed
