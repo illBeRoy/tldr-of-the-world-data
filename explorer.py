@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     # main loop
     while True:
-        query = raw_input('query> ')
+        query = input('query> ')
 
         # break the loop
         if query == 'exit':
@@ -44,21 +44,21 @@ if __name__ == '__main__':
 
         # return all relevant edges which contain the query's string
         elif query[0] == '~':
-            results = filter(lambda x: query[1:] in x.lower(), graph.edges)
-            print ', '.join(results)
+            results = [x for x in graph.edges if query[1:] in x.lower()]
+            print(', '.join(results))
 
         # return all relevant edges which contain the query's string
         elif query[0] == '[' and query[-1] == ']':
             names = [word.strip().title() for word in query[1:-1].split(',')]
 
             try:
-                result = graph.get_joint_neighbours(names, limit=20)
+                result = graph.get_joint_neighbours(names, group_size=20)
             except Exception as err:
-                print 'Query failed: probably one of the queries did not yield results'
+                print('Query failed: probably one of the queries did not yield results')
                 continue
 
             for res in result:
-                print res
+                print(res)
 
         # find closest neighbours for the given name
         else:
@@ -78,14 +78,14 @@ if __name__ == '__main__':
             try:
                 neighbours = graph.get_neighbours(query)
             except:
-                print 'Query failed: no entry named "{0}"'.format(query)
+                print('Query failed: no entry named "{0}"'.format(query))
                 continue
 
             # sort neighbours by proximity (lower weight = higher proximity)
-            result = sorted(neighbours.items(), key=lambda x: x[1])
+            result = sorted(list(neighbours.items()), key=lambda x: x[1])
 
             # print first ten results
             for res in result[:limit]:
-                print '{0} :: {1}'.format(res[0], res[1])
+                print('{0} :: {1}'.format(res[0], res[1]))
 
-    print 'bye'
+    print('bye')

@@ -35,7 +35,7 @@ class Dataset(object):
         '''
         self._rows = []
 
-        with open('pantheon.csv', 'rU') as f:
+        with open('pantheon.csv', 'r', encoding='utf-8-sig') as f:
             reader = csv.reader(f, delimiter=',', dialect=csv.excel_tab)
             field_names = next(reader)
 
@@ -79,7 +79,7 @@ class Dataset(object):
         :param column_name: column to get data for
         :return: the result of the map function
         '''
-        return map(fn, self.get_column(column_name))
+        return list(map(fn, self.get_column(column_name)))
 
 
 class GraphBuilder(object):
@@ -116,7 +116,7 @@ class GraphBuilder(object):
             if threshold is not None and w > threshold:
                 continue
 
-            data_graph.add_vertex(a['name'], b['name'], w)
+            data_graph.add_vertex(a['wikiquote name'], b['wikiquote name'], w)
 
         bar.finish()
 
@@ -150,7 +150,7 @@ if __name__ == '__main__':
 
     # if max_vertices were passed, trim graph so each edge has at most <max_vertices>, ordered by weight
     if args.max_vertices is not None:
-        print 'trimming graph to have {0} outgoing vertices per edge at most'.format(args.max_vertices)
+        print('trimming graph to have {0} outgoing vertices per edge at most'.format(args.max_vertices))
         trimming_bar = progressbar.ProgressBar(max_value=len(graph.edges))
 
         graph = trim.GraphTrimmer().trim(graph, args.max_vertices, on_status_update=trimming_bar.update)
@@ -158,7 +158,7 @@ if __name__ == '__main__':
         trimming_bar.finish()
 
     # save graph to disk
-    print 'saving graph to disk...'
+    print('saving graph to disk...')
     graph.save(args.output)
 
     # done
