@@ -116,7 +116,7 @@ class GraphBuilder(object):
             if threshold is not None and w > threshold:
                 continue
 
-            data_graph.add_vertex(a['wikiquote name'], b['wikiquote name'], w)
+            data_graph.add_vertex(a['wikiquotes_names'], b['wikiquotes_names'], w)
 
         bar.finish()
 
