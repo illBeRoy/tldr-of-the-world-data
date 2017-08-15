@@ -40,3 +40,5 @@ The following output was queried using the `explorer` util over a graph built wi
 ### Note
 
 With English being our second language, we've mistakenly referred to 'edges' as 'vertices' and vice versa. Just switch them in you mind.
+
+The file final.openrefine.tar.gz contains all the info on the people we use in the site, that means it contains the info taken from pantheon and mapping of people to their wikiquote and wikipedia page names.
