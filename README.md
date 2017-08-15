@@ -1,3 +1,5 @@
+Part of the [TL;DR of the World](https://tlderofthe.world) academic project
+
 # Graphy
 Utility for exploring and building graphs of data over the pantheon dataset
 
