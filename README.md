@@ -1,7 +1,11 @@
-Part of the [TL;DR of the World](https://tldrofthe.world) academic project
-
 # Graphy
 Utility for exploring and building graphs of data over the pantheon dataset
+
+Part of the [TL;DR of the World](https://tldrofthe.world) academic project
+
+Server repository can be found [here](https://github.com/illBeRoy/tldr-of-the-world-server).
+
+Client repository can be found [here](https://github.com/illBeRoy/tldr-of-the-world-client).
 
 ### Abstract
 
@@ -35,9 +39,7 @@ The following output was queried using the `explorer` util over a graph built wi
 
 ![example](explorer.png)
 
-
-
-### Note
+### Notes
 
 With English being our second language, we've mistakenly referred to 'edges' as 'vertices' and vice versa. Just switch them in you mind.
 
